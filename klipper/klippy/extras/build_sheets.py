@@ -102,20 +102,26 @@ class BuildSheetManager:
     cmd_BuildSheetsStatus_help = "List all build sheets and current build sheet system status"
     def cmd_BuildSheetsStatus(self, gcmd):
         strBuilder = []
-        installedSheet = self.installed_sheet()
-        strBuilder.append("Installed Build Sheet: {0}\n".format(self.installed_sheet_name()))
+        installedSheetName = self.installed_sheet_name()
+        strBuilder.append("Installed Build Sheet: {0}\n".format(installedSheetName))
         if self.is_toolchanger:
             strBuilder.append("Current Tool: {0}\n".format(self.current_tool))
         strBuilder.append("Current Live Z Offset: {0}\n".format(self.get_live_z_offset()))
         strBuilder.append("Available Build Sheets:\n")
         for sheet_name in self.sheets():
             sheet = self.sheets()[sheet_name]
-            prefix = "> " if sheet_name == installedSheet else "* "
+            prefix = "-> " if sheet_name == installedSheetName else "*  "
             strBuilder.append("{0}{1}: ".format(prefix, sheet_name))
             sheetOffsets = []
-            for tool_key in sheet:
-                offsetPrefix = "(*) " if tool_key == self.current_tool else ""
-                sheetOffsets.append("{0}{1}: {2}".format(offsetPrefix, tool_key, sheet[tool_key]))
+            if len(sheet) == 1 and self.LIVE_Z_KEY in sheet:
+                # single tool printers
+                for tool_key in sheet:
+                    sheetOffsets.append(str(sheet[tool_key]))
+            else:
+                # toolchangers
+                for tool_key in sheet:
+                    offsetPrefix = "->" if tool_key == self.current_tool else ""
+                    sheetOffsets.append("{0}{1}: {2}".format(offsetPrefix, tool_key, sheet[tool_key]))
             strBuilder.append(', '.join(sheetOffsets))
             strBuilder.append('\n')
         gcmd.respond_raw(''.join(strBuilder))
