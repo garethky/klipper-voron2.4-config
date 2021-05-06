@@ -14,6 +14,8 @@ class BuildSheetManager:
         self.override_get_gcode_offset = config.getboolean('override_set_gcode_offset', True)
         self.gcode_move = self.printer.load_object(config, 'gcode_move')
         self.gcode = self.printer.lookup_object('gcode')
+        self.printer.register_event_handler("klippy:ready",
+                                            self.on_ready)
         self._register_commands()
 
     BUILD_SHEET_FILE = "/build_sheets.json"
@@ -38,6 +40,7 @@ class BuildSheetManager:
         gcode.register_command("SET_BUILD_SHEET_LIVE_Z", self.cmd_SetLiveZ,
                                desc=self.cmd_SetLiveZ_help)
         if self.override_get_gcode_offset:
+            # TODO: should there be an option to control the name of the base command?
             base_get_gcode_offset = gcode.register_command("SET_GCODE_OFFSET", None)
             gcode.register_command("BASE_SET_GCODE_OFFSET", base_get_gcode_offset)
             gcode.register_command("SET_GCODE_OFFSET", self.cmd_SetGCodeOffsetOverride,
@@ -91,6 +94,10 @@ class BuildSheetManager:
     def _save_build_sheets(self):
         with open(self.build_sheets_config_file, 'w') as outfile:
             json.dump(self.build_sheets_data, outfile)
+
+    def on_ready(self):
+        # inital offset cant be set until the toolhead object is created
+        self.update_live_z()
 
     cmd_BuildSheetsStatus_help = "List all build sheets and current build sheet system status"
     def cmd_BuildSheetsStatus(self, gcmd):
