@@ -1,0 +1,32 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "deploy_config",
+            "type": "shell",
+            "command": "rsync -iahp ./klipper-config/printer.cfg pi@voron24.local:/home/pi/klipper_config/printer.cfg",
+            "problemMatcher": []
+        },
+        {
+            "label": "deploy_extras",
+            "type": "shell",
+            "command": "rsync -iahp --exclude=\".*\" ./klipper/klippy/extras/* pi@voron24.local:/home/pi/klipper/klippy/extras/"
+        },
+        {
+            "label": "restart_klipper",
+            "type": "shell",
+            "command": "ssh pi@voron24.local 'sudo service klipper restart'"
+        },
+        {
+            "label": "deploy & restart",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "deploy_extras",
+                "restart_klipper"
+            ],
+            "problemMatcher": []
+        }
+    ]
+}

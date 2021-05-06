@@ -1,15 +1,18 @@
 {
 	"build_systems":
-    [
-        {
-            "name": "Deploy printer.cfg",
-            "shell_cmd": "rsync -iahp --exclude=\".*\" /Users/gareth/Documents/GitHub/klipper-voron2.4-config/klipper-config/ pi@voron24.local:/home/pi/klipper_config/"
-        },
-    ],
+	[
+		{
+			"name": "Deploy printer.cfg",
+			"shell_cmd": "rsync -iahp --exclude=\".*\" . pi@voron24.local:/home/pi/klipper_config/"
+		}
+	],
 	"folders":
 	[
 		{
 			"path": "."
+		},
+		{
+			"path": "/Users/gareth/Dropbox/GitHub/klipper"
 		}
 	]
 }

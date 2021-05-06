@@ -132,3 +132,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+klipper-voron2.4-config.sublime-workspace
