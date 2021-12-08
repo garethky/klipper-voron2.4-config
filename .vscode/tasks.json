@@ -6,13 +6,14 @@
         {
             "label": "deploy_config",
             "type": "shell",
-            "command": "rsync -iahp ./klipper-config/printer.cfg pi@voron24.local:/home/pi/klipper_config/printer.cfg",
+            "command": "rsync -iahp ./klipper-config/* pi@voron24.local:/home/pi/klipper_config/",
             "problemMatcher": []
         },
         {
             "label": "deploy_private_extras",
             "type": "shell",
-            "command": "rsync -iahp --exclude=\".*\" ./klipper/klippy/extras/* pi@voron24.local:/home/pi/klipper/klippy/extras/"
+            "command": "rsync -iahp --exclude=\".*\" ./klipper/klippy/extras/* pi@voron24.local:/home/pi/klipper/klippy/extras/",
+            "problemMatcher": []
         },
         {
             "label": "deploy_klippy_extras",

@@ -166,8 +166,6 @@ class BuildSheetManager:
         self._save_build_sheets()
         self.update_live_z()
 
-    # TODO: should this command create a sheet if the name is unknown? 
-    # This would get rid of 'ADD_BUILD_SHEET'
     cmd_InstallSheet_help = "Install a build sheet into the printer"
     def cmd_InstallSheet(self, gcmd):
         sheet_name = gcmd.get('SHEET')
@@ -240,26 +238,30 @@ class BuildSheetManager:
         z_adjust = gcmd.get_float('Z_ADJUST', default = None)
         has_z_adjustment = z_offset is not None or z_adjust is not None
         sheet = self.installed_sheet()
-        # in the case of a tool changer you must have a tool selected to adjust live Z
-        if sheet and has_z_adjustment and self.is_toolchanger and not self.current_tool:
+        # in the case of a tool changer you must have a tool selected to 
+        # adjust live Z
+        if sheet and has_z_adjustment and self.is_toolchanger \
+            and not self.current_tool:
             gcmd.error("No tool is selected for Live Z adjustment")
-        # only apply Z to the sheet model if a sheet is installed and a Z adjustment was requested
-        # all other cases are pass through
+        # only apply Z to the sheet model if a sheet is installed and a 
+        # Z adjustment was requested. All other cases are pass through
         if sheet and has_z_adjustment:
             tool = self._get_tool_key()
             if z_offset is not None:
                 sheet[tool] = float('%.3f' % (z_offset))
             elif z_adjust is not None:
+                del params['Z_ADJUST']
                 # add tool key if missing, initalize to 0.0
                 if not tool in sheet:
                     sheet[tool] = self.default_z_offset
                 sheet[tool] = float('%.3f' % (sheet[tool] + z_adjust))
-            # override the supplied argument with the one from the build sheet model
-            del params['Z_ADJUST'] 
+            # override the supplied argument with the one from the build 
+            # sheet model
             params['Z']= self.get_live_z_offset()
-        # TODO: in the case where no sheet is installed, what is the right behaviour here?
-        # currently any changes will be lost when a sheet is installed, personally im OK with this but
-        # maybe not everyone will be
+        # TODO: in the case where no sheet is installed, what is the right 
+        # behaviour here?
+        # Currently any changes will be lost when a sheet is installed,
+        # personally im OK with this butmaybe not everyone will be
         offset_command = self.gcode.create_gcode_command(
             "BASE_SET_GCODE_OFFSET", "BASE_SET_GCODE_OFFSET", params)
         self.gcode_move.cmd_SET_GCODE_OFFSET(offset_command)
