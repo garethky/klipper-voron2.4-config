@@ -189,7 +189,7 @@ class ZCalibrationHelper:
         gcmd.respond_info(
             "probe accuracy results: maximum %.6f, minimum %.6f, range %.6f, "
             "average %.6f, median %.6f, standard deviation %.6f" % (
-            max_value, min_value, range_value, avg_value, median, sigma))        
+            max_value, min_value, range_value, avg_value, median, sigma))
     def _probe(self, mcu_endstop, z_position, speed):
             toolhead = self.printer.lookup_object('toolhead')
             pos = toolhead.get_position()

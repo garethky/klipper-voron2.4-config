@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "../klipper"
+		},
+		{
+			"path": "../../Projects/klipper_build_sheets"
 		}
 	],
 	"settings": {}

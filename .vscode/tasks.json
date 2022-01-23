@@ -16,6 +16,12 @@
             "problemMatcher": []
         },
         {
+            "label": "deploy_z_calibration_patch",
+            "type": "shell",
+            "command": "rsync -iahp --exclude=\".*\" ./klipper/klipper_z_calibration/* pi@voron24.local:/home/pi/klipper_z_calibration/",
+            "problemMatcher": []
+        },
+        {
             "label": "deploy_klippy_extras",
             "type": "shell",
             "command": "rsync -iahpr --exclude=\".*\" ../klipper/klippy/extras/* pi@voron24.local:/home/pi/klipper/klippy/extras/",
