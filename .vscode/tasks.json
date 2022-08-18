@@ -4,49 +4,51 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "deploy_config",
+            "label": "voron24_deploy_config",
             "type": "shell",
             "command": "rsync -iahp ./klipper-config/* pi@voron24.local:/home/pi/klipper_config/",
             "problemMatcher": []
         },
+        /*
         {
-            "label": "deploy_private_extras",
+            "label": "voron24_deploy_private_extras",
             "type": "shell",
             "command": "rsync -iahp --exclude=\".*\" ./klipper/klippy/extras/* pi@voron24.local:/home/pi/klipper/klippy/extras/",
             "problemMatcher": []
-        },
+        },*/
         {
-            "label": "deploy_z_calibration_patch",
+            "label": "voron24_deploy_z_calibration_patch",
             "type": "shell",
             "command": "rsync -iahp --exclude=\".*\" ./klipper/klipper_z_calibration/* pi@voron24.local:/home/pi/klipper_z_calibration/",
             "problemMatcher": []
         },
-        {
-            "label": "deploy_klippy_extras",
+        /*{
+            "label": "voron24_deploy_klippy_extras",
             "type": "shell",
             "command": "rsync -iahpr --exclude=\".*\" ../klipper/klippy/extras/* pi@voron24.local:/home/pi/klipper/klippy/extras/",
             "problemMatcher": []
-        },
+        },*/
         {
-            "label": "restart_klipper",
+            "label": "voron24_restart_klipper",
             "type": "shell",
             "command": "ssh pi@voron24.local 'sudo service klipper restart'",
             "problemMatcher": []
         },
         {
-            "label": "test_whitespace",
+            "label": "voron24_test_whitespace",
             "type": "shell",
             "command": "../klipper/scripts/check_whitespace.sh",
             "problemMatcher": []
         },
         {
-            "label": "deploy & restart",
+            "label": "Voron2.4 Deploy All & Restart",
             "dependsOrder": "sequence",
             "dependsOn": [
-                "deploy_klippy_extras",
-                "deploy_private_extras",
-                "deploy_config",
-                "restart_klipper"
+                //"voron24_deploy_klippy_extras",
+                //"voron24_deploy_private_extras",
+                "voron24_deploy_config",
+                "voron24_deploy_z_calibration_patch",
+                "voron24_restart_klipper"
             ],
             "problemMatcher": []
         }

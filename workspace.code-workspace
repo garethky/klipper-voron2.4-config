@@ -7,8 +7,31 @@
 			"path": "../klipper"
 		},
 		{
-			"path": "../../Projects/klipper_build_sheets"
+			"path": "../klipper-e3dtoolchanger-config"
+		},
+		{
+			"path": "../Klipper_ToolChanger"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"files.associations": {
+			"atomic": "c",
+			"cstdint": "c",
+			"array": "c",
+			"vector": "c",
+			"string": "c",
+			"string_view": "c",
+			"spicmds.h": "c",
+			"iterator": "c",
+			"basecmd.h": "c",
+			"locale": "c",
+			"stdint.h": "c",
+			"map": "c",
+			"unordered_map": "c",
+			"__locale": "c",
+			"load_cell_endstop.h": "c",
+			"__functional_03": "c",
+			"functional": "c"
+		}
+	}
 }

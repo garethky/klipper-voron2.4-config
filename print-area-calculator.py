@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/local/opt/python/libexec/bin/python
 # PRUSA SLICER tool to calculate the maximum extents of a print
 # Written by Gareth Farrington
 import sys, os, re, math
