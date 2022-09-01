@@ -6,7 +6,7 @@
         {
             "label": "voron24_deploy_config",
             "type": "shell",
-            "command": "rsync -iahp ./klipper-config/* pi@voron24.local:/home/pi/klipper_config/",
+            "command": "rsync -iahp --exclude=\"variables.cfg\" ./klipper-config/* pi@voron24.local:/home/pi/klipper_config/",
             "problemMatcher": []
         },
         /*
@@ -16,12 +16,12 @@
             "command": "rsync -iahp --exclude=\".*\" ./klipper/klippy/extras/* pi@voron24.local:/home/pi/klipper/klippy/extras/",
             "problemMatcher": []
         },*/
-        {
+        /*{
             "label": "voron24_deploy_z_calibration_patch",
             "type": "shell",
             "command": "rsync -iahp --exclude=\".*\" ./klipper/klipper_z_calibration/* pi@voron24.local:/home/pi/klipper_z_calibration/",
             "problemMatcher": []
-        },
+        },*/
         /*{
             "label": "voron24_deploy_klippy_extras",
             "type": "shell",
