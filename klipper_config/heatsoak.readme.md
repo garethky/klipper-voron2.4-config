@@ -53,9 +53,9 @@ HEAT_SOAK SOAKER='temperature_sensor chamber' SOAK_TEMP=40 RATE=0.1 RATE_SMOOTH=
 This heat soak will end when the chamber is above 40C and the chamber temperature has gone up less than 0.1C over the last 30 seconds.
 
 ### Using with `PRINT_START` and other macros
-One of the difficulties with klipper macros is that they cannot the control flow of the macro to wait for something. This macro gets around this problem by using a `delayed_gcode` macro. But because of this you need to stop your `PRINT_START` at the call to `HEAT_SOAK`. The parameter `CONTINUE` is used to continue the print when the heat soak finishes.
+One of the difficulties with klipper macros is that they cannot stop the control flow of the macro to wait for something. It does pause the print, but that only stops the next line of the print from executing, your PRINT_START macro continues to execute. Because of this you need to end your `PRINT_START` at the call to `HEAT_SOAK`. But more than likely you want to run some additional startup code after the heat soak finishes, like mesh bed leveling or heating the extruder. The parameter `CONTINUE` is used to run another macro when the heat soak finishes.
 
-This is an example of using `HEAT_SOAK` as part of a `PRINT_START` process. Usually we pass some parameters to `PRINT_START` and you might need to pass these on. Please carefully note the `-%}` and `{%-` that wrap the `CONTINUE` variable, these are required to remove any whitespace or newlines around the continue code. Also note the use of quotes in `CONTINUE='{CONTINUE}'`, they are required to have this parsed correctly by klipper.
+This is an example of using `HEAT_SOAK` as part of a `PRINT_START` process. Usually we pass some parameters to `PRINT_START` and you might need to pass these on to the next macro. Please carefully note the `-%}` and `{%-` that wrap the `CONTINUE` variable, these are required to remove any whitespace or newlines around the continue code. Also note the use of quotes in `CONTINUE='{CONTINUE}'`, they are required to have this parsed correctly by klipper.
 
 ```
 [gcode_macro PRINT_START]
