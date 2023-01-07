@@ -46,7 +46,7 @@ HEAT_SOAK HEATER='heater_bed' TARGET=110 SOAKER='temperature_sensor chamber' SOA
 * `RATE` - This is the rate of temperature change that you would like the sensor to be below at the end of the heat soak, expressed in degrees C per minute. Default: 0.3
 * `TEMP_SMOOTH` - Number of seconds of smoothing to apply to the soaker temperature. The reading from the `SOAKER` is smoothed using this value. Default: 4
 * `RATE_SMOOTH` - Number of seconds of smoothing to apply to the soaker rate of temperature change. This usually needs to be quite a bit large than `TEMP_SMOOTH`. Default: 20
-* `TIMEOUT` - The number of minutes before the heat soaking command times out. Default: 30
+* `TIMEOUT` - The number of minutes before the soaking phase times out. Default: 30
 * `CANCEL` - The macro to run when the heat soak times out or is canceled with `CANCEL_HEAT_SOAK`. Usually you would set this to your `CANCEL_PRINT` macro if running a print. Default: None
 * `COMPLETE` - A macro to call when the heat soak completes successfully. Useful for notifications. It is strongly recommended that you do not move the toolhead in this macro without reading [this warning](#be-careful-with-COMPLETE). Default: None
 * `HEATING_REPORT_INTERVAL` - The heater temperature will be logged to the console at this interval in seconds. Default: 2
@@ -115,12 +115,12 @@ PRINT_START EXTRUDER_TEMP=[first_layer_temperature] BED_TEMP=[first_layer_bed_te
 
 * `CANCEL_HEAT_SOAK` - Cancels an in-progress `HEAT_SOAK` and runs the cancel callback if it is defined
 * `STOP_HEAT_SOAK` - Stops any in-progress `HEAT_SOAK` without running any callbacks
-* `RESUME` - the RESUME macro is overridden to provide additional support for `HEAT_SOAK`:
-    * In the heating phase the RESUME macro tells `HEAT_SOAK` to shortcut the soaking phase when heating is complete.
+* `HEAT_SOAK_RESUME ON_RESUME=_BASE_RESUME` - Macro that resumes the print if
+    * In the heating phase, tells `HEAT_SOAK` to shortcut the soaking phase when heating is complete.
     * In the soaking phase the heat soak is stopped immediately, any complete callback is run.
-* `CANCEL_PRINT` - the `CANCEL_PRINT` macro is overridden to call `STOP_HEAT_SOAK` before canceling the print. This stops the background task that might trigger the complete or cancel callbacks while the printer is idle.
+    * Runs the supplied `ON_RESUME` macro if the print is supposed to resume.
+* `RESUME` - the RESUME macro is overridden to provide additional support for `HEAT_SOAK` by calling `HEAT_SOAK_RESUME`. If you want to use your own override you are free to use `HEAT_SOAK_RESUME` to get back the same behavior.
 
-Because of the macro overrides it is recommended that you include the heatsoak.cfg macro *after* your own overrides of these macros. They will safely wrap your macros and pass any parameters that you pass.
 
 # For The Adventurous User
 
