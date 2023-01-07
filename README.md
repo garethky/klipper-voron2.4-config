@@ -48,3 +48,7 @@ I went through a long trial and error process to get reliable first layers. Thes
 * The dual MGN9 rail design of the X axis was over constrained. I believe the printer was designed this way to make up for cheap chinese MGN9 rails that have no preload. I loosened the bottom rail and that actually improved things. Switching over to a single MGN12 rail with appropriate preload (Honeybadger brand) solved the rotational slop in the X axis.
 
 Converting to MGN 12 with preload (Honeybadger MGN12) + straightening the X aluminum extrusion solved the bulk of this and really transformed how repeatable my fist layers are.
+
+# Stuff I Learned
+## Stepper Motor Tuning
+[This guide](https://github.com/MakerBogans/docs/wiki/TMC-Driver-Tuning#example-for-an-extruder-motor) by [Lingomat](https://github.com/Lingomat) is a standout bit of information of tuning TMC stepper driver parameters. You should do this BEFORE you mess with the input shaper. Stepper resonance is going to kill your print quality and make a whole lot of noise. Its not perfect and probably running our steppers at an even higher voltage would be better but this is a pretty solid start.
