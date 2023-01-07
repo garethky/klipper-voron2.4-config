@@ -9,25 +9,12 @@
             "command": "rsync -iahp --exclude=\"variables.cfg\" ./klipper_config/* pi@voron24.local:/home/pi/klipper_config/",
             "problemMatcher": []
         },
-        /*
         {
-            "label": "voron24_deploy_private_extras",
+            "label": "voron24_deploy_clibration_prints",
             "type": "shell",
-            "command": "rsync -iahp --exclude=\".*\" ./klipper/klippy/extras/* pi@voron24.local:/home/pi/klipper/klippy/extras/",
+            "command": "rsync -iahp ./calibration_prints/* pi@voron24.local:/home/pi/gcode_files/calibration/",
             "problemMatcher": []
-        },*/
-        /*{
-            "label": "voron24_deploy_z_calibration_patch",
-            "type": "shell",
-            "command": "rsync -iahp --exclude=\".*\" ./klipper/klipper_z_calibration/* pi@voron24.local:/home/pi/klipper_z_calibration/",
-            "problemMatcher": []
-        },*/
-        /*{
-            "label": "voron24_deploy_klippy_extras",
-            "type": "shell",
-            "command": "rsync -iahpr --exclude=\".*\" ../klipper/klippy/extras/* pi@voron24.local:/home/pi/klipper/klippy/extras/",
-            "problemMatcher": []
-        },*/
+        },
         {
             "label": "voron24_restart_klipper",
             "type": "shell",
@@ -35,19 +22,11 @@
             "problemMatcher": []
         },
         {
-            "label": "voron24_test_whitespace",
-            "type": "shell",
-            "command": "../klipper/scripts/check_whitespace.sh",
-            "problemMatcher": []
-        },
-        {
             "label": "Voron2.4 Deploy All & Restart",
             "dependsOrder": "sequence",
             "dependsOn": [
-                //"voron24_deploy_klippy_extras",
-                //"voron24_deploy_private_extras",
                 "voron24_deploy_config",
-                //"voron24_deploy_z_calibration_patch",
+                "voron24_deploy_clibration_prints",
                 "voron24_restart_klipper"
             ],
             "problemMatcher": []
