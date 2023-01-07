@@ -1,7 +1,8 @@
 ## TODO.md
 
 ## Electrics/Mechanical
-* Euclid probe arm with magnet in it.
+* Voron Tap
+* ~~Euclid probe arm with magnet in it.~~
 * electronics bay cover
 * re-design the VOC filter
 * Convert to CAN bus board on the toolhead. Pending: a canbus board with 24v stepper driver and 12v fans
