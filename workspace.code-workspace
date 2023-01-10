@@ -2,15 +2,6 @@
 	"folders": [
 		{
 			"path": "."
-		},
-		{
-			"path": "../klipper"
-		},
-		{
-			"path": "../klipper-e3dtoolchanger-config"
-		},
-		{
-			"path": "../Klipper_ToolChanger"
 		}
 	],
 	"settings": {

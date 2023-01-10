@@ -6,13 +6,19 @@
         {
             "label": "voron24_deploy_config",
             "type": "shell",
-            "command": "rsync -iahp --exclude=\"variables.cfg\" ./klipper_config/* pi@voron24.local:/home/pi/klipper_config/",
+            "command": "rsync -iahp ./printer_data/config/* pi@voron24.local:/home/pi/printer_data/config/",
             "problemMatcher": []
         },
         {
             "label": "voron24_deploy_clibration_prints",
             "type": "shell",
-            "command": "rsync -iahp ./calibration_prints/* pi@voron24.local:/home/pi/gcode_files/calibration/",
+            "command": "rsync -iahp ./printer_data/gcodes/* pi@voron24.local:/home/pi/printer_data/gcodes/",
+            "problemMatcher": []
+        },
+        {
+            "label": "voron24_backup_variables",
+            "type": "shell",
+            "command": "rsync pi@voron24.local:/home/pi/printer_data/variables.cfg ./printer_data/",
             "problemMatcher": []
         },
         {
@@ -27,6 +33,7 @@
             "dependsOn": [
                 "voron24_deploy_config",
                 "voron24_deploy_clibration_prints",
+                "voron24_backup_variables",
                 "voron24_restart_klipper"
             ],
             "problemMatcher": []
