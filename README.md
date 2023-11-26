@@ -51,4 +51,4 @@ Converting to MGN 12 with preload (Honeybadger MGN12) + straightening the X alum
 
 # Stuff I Learned
 ## Stepper Motor Tuning
-[This guide](https://github.com/MakerBogans/docs/wiki/TMC-Driver-Tuning#example-for-an-extruder-motor) by [Lingomat](https://github.com/Lingomat) is a standout bit of information of tuning TMC stepper driver parameters. You should do this BEFORE you mess with the input shaper. Stepper resonance is going to kill your print quality and make a whole lot of noise. Its not perfect and probably running our steppers at an even higher voltage would be better but this is a pretty solid start.
+[This guide](https://github.com/MakerBogans/docs/wiki/TMC-Driver-Tuning) by [Lingomat](https://github.com/Lingomat) is a standout bit of information of tuning TMC stepper driver parameters. You should do this BEFORE you mess with the input shaper. Stepper resonance is going to kill your print quality and make a whole lot of noise. Its not perfect and probably running our steppers at an even higher voltage would be better but this is a pretty solid start.

@@ -4,6 +4,18 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "klippy_experiment",
+            "type": "shell",
+            "command": "rsync -iahp ../fluidd/src/components/widgets/thermals/TemperatureTargets.vue pi@voron24.local:/home/pi/fluidd/src/components/widgets/thermals/TemperatureTargets.vue",
+            "problemMatcher": []
+        },
+        {
+            "label": "deploy_klippy",
+            "type": "shell",
+            "command": "rsync -iahp ../klipper/klippy/* pi@voron24.local:/home/pi/klipper/klippy/",
+            "problemMatcher": []
+        },
+        {
             "label": "voron24_deploy_config",
             "type": "shell",
             "command": "rsync -iahp ./printer_data/config/* pi@voron24.local:/home/pi/printer_data/config/",

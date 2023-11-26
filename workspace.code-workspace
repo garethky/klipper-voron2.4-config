@@ -5,6 +5,18 @@
 		},
 		{
 			"path": "../filaments-klipper-extra"
+		},
+		{
+			"path": "../change-nozzle-klipper-extra"
+		},
+		{
+			"path": "../fluidd"
+		},
+		{
+			"path": "../../../Library/CloudStorage/Dropbox/GitHub/klipper"
+		},
+		{
+			"path": "../../../Library/CloudStorage/Dropbox/GitHub/klipper-e3dtoolchanger-config"
 		}
 	],
 	"settings": {
@@ -25,7 +37,9 @@
 			"__locale": "c",
 			"load_cell_endstop.h": "c",
 			"__functional_03": "c",
-			"functional": "c"
+			"functional": "c",
+			"sensor_load_cell.h": "c",
+			"sensor_multiplex_adc.h": "c"
 		}
 	}
 }
