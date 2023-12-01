@@ -25,7 +25,7 @@
         {
             "label": "📦 Deploy Klipper",
             "type": "shell",
-            "command": "rsync -iahpr --exclude={\".*\",\"*.pyc\"} ../klipper pi@voron24.local:/home/pi/",
+            "command": "rsync -iahpr --exclude={\".*\",\"*.pyc\",\"board/*\",\"out/*\"} ../klipper pi@voron24.local:/home/pi/",
             "problemMatcher": []
         },
         {
