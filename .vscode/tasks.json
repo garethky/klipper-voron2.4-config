@@ -4,9 +4,15 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "🧹 Clear Log File",
+            "label": "🧹 Clear Klipper Log File",
             "type": "shell",
             "command": "ssh pi@voron24.local 'truncate -s 0 /home/pi/printer_data/logs/klippy.log*' ",
+            "problemMatcher": []
+        },
+        {
+            "label": "🧹 Clear Moonraker Log File",
+            "type": "shell",
+            "command": "ssh pi@voron24.local 'truncate -s 0 /home/pi/printer_data/logs/moonraker.log*' ",
             "problemMatcher": []
         },
         {
@@ -29,9 +35,15 @@
             "problemMatcher": []
         },
         {
-            "label": "⚡ Flash MCU",
+            "label": "⚡ Flash MCU Klipper",
             "type": "shell",
             "command": "ssh pi@voron24.local './printer_data/config/flash_mcu.sh'",
+            "problemMatcher": []
+        },
+        {
+            "label": "⚡ Flash MCU Katapult",
+            "type": "shell",
+            "command": "ssh pi@voron24.local './printer_data/config/flash_mcu_katapult.sh'",
             "problemMatcher": []
         },
         {
