@@ -4,19 +4,19 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "🧹 Clear Klipper Log File",
+            "label": "🧹 Clear klipper.log",
             "type": "shell",
             "command": "ssh pi@voron24.local 'truncate -s 0 /home/pi/printer_data/logs/klippy.log*' ",
             "problemMatcher": []
         },
         {
-            "label": "🧹 Clear Moonraker Log File",
+            "label": "🧹 Clear moonraker.log",
             "type": "shell",
             "command": "ssh pi@voron24.local 'truncate -s 0 /home/pi/printer_data/logs/moonraker.log*' ",
             "problemMatcher": []
         },
         {
-            "label": "🧹 Clear Loadcell.log File",
+            "label": "🧹 Clear loadcell.log",
             "type": "shell",
             "command": "ssh pi@voron24.local 'truncate -s 0 /home/pi/printer_data/logs/loadcell.log' ",
             "problemMatcher": []
@@ -25,13 +25,19 @@
             "label": "⏯️ Restart Klipper",
             "type": "shell",
             "command": "ssh pi@voron24.local 'sudo service klipper restart'",
-            "dependsOn": ["🧹 Clear Log File"],
+            "dependsOn": ["🧹 Clear klipper.log"],
             "problemMatcher": []
         },
         {
             "label": "📦 Deploy Klipper",
             "type": "shell",
             "command": "rsync -iahpr --exclude={\".*\",\"*.pyc\",\"board/*\",\"out/*\"} ../klipper pi@voron24.local:/home/pi/",
+            "problemMatcher": []
+        },
+        {
+            "label": "📦 Deploy Printer Config",
+            "type": "shell",
+            "command": "rsync -iahp ./printer_data/config/* pi@voron24.local:/home/pi/printer_data/config/",
             "problemMatcher": []
         },
         {
@@ -53,18 +59,6 @@
             "problemMatcher": []
         },
         {
-            "label": "deploy_klippy",
-            "type": "shell",
-            "command": "rsync -iahp ../klipper/klippy/* pi@voron24.local:/home/pi/klipper/klippy/",
-            "problemMatcher": []
-        },
-        {
-            "label": "voron24_deploy_config",
-            "type": "shell",
-            "command": "rsync -iahp ./printer_data/config/* pi@voron24.local:/home/pi/printer_data/config/",
-            "problemMatcher": []
-        },
-        {
             "label": "voron24_deploy_clibration_prints",
             "type": "shell",
             "command": "rsync -iahp ./printer_data/gcodes/* pi@voron24.local:/home/pi/printer_data/gcodes/",
@@ -74,23 +68,6 @@
             "label": "voron24_backup_variables",
             "type": "shell",
             "command": "rsync pi@voron24.local:/home/pi/printer_data/variables.cfg ./printer_data/",
-            "problemMatcher": []
-        },
-        {
-            "label": "voron24_restart_klipper",
-            "type": "shell",
-            "command": "ssh pi@voron24.local 'sudo service klipper restart'",
-            "problemMatcher": []
-        },
-        {
-            "label": "Voron2.4 Deploy All & Restart",
-            "dependsOrder": "sequence",
-            "dependsOn": [
-                "voron24_deploy_config",
-                "voron24_deploy_clibration_prints",
-                "voron24_backup_variables",
-                "voron24_restart_klipper"
-            ],
             "problemMatcher": []
         }
     ]
