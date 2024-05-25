@@ -4,6 +4,12 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "🔍 Check Whitespace",
+            "type": "shell",
+            "command": "../klipper/scripts/check_whitespace.sh",
+            "problemMatcher": []
+        },
+        {
             "label": "🧹 Clear klipper.log",
             "type": "shell",
             "command": "ssh pi@voron24.local 'truncate -s 0 /home/pi/printer_data/logs/klippy.log*' ",
@@ -13,6 +19,12 @@
             "label": "🧹 Clear moonraker.log",
             "type": "shell",
             "command": "ssh pi@voron24.local 'truncate -s 0 /home/pi/printer_data/logs/moonraker.log*' ",
+            "problemMatcher": []
+        },
+        {
+            "label": "🧹 Clear KlipperScreen.log",
+            "type": "shell",
+            "command": "ssh pi@voron24.local 'truncate -s 0 /home/pi/printer_data/logs/KlipperScreen.log*' ",
             "problemMatcher": []
         },
         {
@@ -38,6 +50,11 @@
             "label": "📦 Deploy Printer Config",
             "type": "shell",
             "command": "rsync -iahp ./printer_data/config/* pi@voron24.local:/home/pi/printer_data/config/",
+            "problemMatcher": []
+        },
+        {
+            "label": "📦+⏯️ Deploy & Restart Klipper",
+            "dependsOn": ["📦 Deploy Klipper", "⏯️ Restart Klipper"],
             "problemMatcher": []
         },
         {

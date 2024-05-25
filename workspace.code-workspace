@@ -10,13 +10,7 @@
 			"path": "../change-nozzle-klipper-extra"
 		},
 		{
-			"path": "../fluidd"
-		},
-		{
 			"path": "../../../Library/CloudStorage/Dropbox/GitHub/klipper"
-		},
-		{
-			"path": "../../../Library/CloudStorage/Dropbox/GitHub/klipper-e3dtoolchanger-config"
 		}
 	],
 	"settings": {
