@@ -53,8 +53,8 @@
             "problemMatcher": []
         },
         {
-            "label": "📦+⏯️ Deploy & Restart Klipper",
-            "dependsOn": ["📦 Deploy Klipper", "⏯️ Restart Klipper"],
+            "label": "📦 + ⏯️ Deploy & Restart Klipper",
+            "dependsOn": ["📦 Deploy Printer Config", "📦 Deploy Klipper", "⏯️ Restart Klipper"],
             "problemMatcher": []
         },
         {
