@@ -10,7 +10,7 @@
 			"path": "../change-nozzle-klipper-extra"
 		},
 		{
-			"path": "../../../Library/CloudStorage/Dropbox/GitHub/klipper"
+			"path": "../klipper"
 		}
 	],
 	"settings": {
@@ -33,7 +33,43 @@
 			"__functional_03": "c",
 			"functional": "c",
 			"sensor_load_cell.h": "c",
-			"sensor_multiplex_adc.h": "c"
+			"sensor_multiplex_adc.h": "c",
+			"cstddef": "cpp",
+			"trsync.h": "c",
+			"cmath": "c",
+			"complex": "c",
+			"cstdlib": "c",
+			"limits": "c",
+			"__bit_reference": "c",
+			"__node_handle": "c",
+			"bitset": "c",
+			"deque": "c",
+			"optional": "c",
+			"ratio": "c",
+			"tuple": "c",
+			"sos_filter.h": "c",
+			"limits.h": "c",
+			"stdlib.h": "c"
 		}
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "build",
+				"type": "shell",
+				"command": "msbuild",
+				"args": [
+					"/property:GenerateFullPaths=true",
+					"/t:build",
+					"/consoleloggerparameters:NoSummary"
+				],
+				"group": "build",
+				"presentation": {
+					"reveal": "silent"
+				},
+				"problemMatcher": "$msCompile"
+			}
+		]
 	}
 }
