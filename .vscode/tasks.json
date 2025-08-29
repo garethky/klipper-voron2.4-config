@@ -92,7 +92,6 @@
             "label": "📦 + ⏯️ Deploy & Restart Klipper",
             "dependsOn": ["📦 Deploy Printer Config", "📦 Deploy Klipper", "⏯️ Restart Klipper"],
             "dependsOrder": "sequence",
-            "command": "",
             "problemMatcher": []
         },
         {

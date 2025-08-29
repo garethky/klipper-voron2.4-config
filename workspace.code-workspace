@@ -11,6 +11,9 @@
 		},
 		{
 			"path": "../klipper"
+		},
+		{
+			"path": "../kalico"
 		}
 	],
 	"settings": {
@@ -49,7 +52,8 @@
 			"tuple": "c",
 			"sos_filter.h": "c",
 			"limits.h": "c",
-			"stdlib.h": "c"
+			"stdlib.h": "c",
+			"misc.h": "c"
 		}
 	},
 	"tasks": {
