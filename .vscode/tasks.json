@@ -6,13 +6,13 @@
         {
             "label": "🔍 Check Whitespace",
             "type": "shell",
-            "command": "../klipper/scripts/check_whitespace.sh",
+            "command": "../kalico/scripts/check_whitespace.sh",
             "problemMatcher": []
         },
         {
             "label": "🔍 Klipper Tests",
             "type": "shell",
-            "command": "python3 ../klipper/scripts/test_klippy.py -d ../klipper-test-dict/ ../klipper/test/klippy/*.test",
+            "command": "python3 ../kalico/scripts/test_klippy.py -d ../klipper-test-dict/ ../kalico/test/klippy/*.test",
             "problemMatcher": []
         },
         {
@@ -61,19 +61,19 @@
         {
             "label": "📦 Deploy Klipper",
             "type": "shell",
-            "command": "rsync -iahpr --exclude={\".*\",\"*.pyc\",\"board/*\",\"out/*\"} ../klipper pi@voron24.local:/home/pi/",
+            "command": "rsync -iahpr --exclude={\".*\",\"*.pyc\",\"board/*\",\"out/*\"} ../kalico/ pi@voron24.local:/home/pi/klipper/",
             "problemMatcher": []
         },
         {
             "label": "📦 Deploy Klipper ADS1220",
             "type": "shell",
-            "command": "rsync -iahpr --exclude={\".*\",\"*.pyc\",\"board/*\",\"out/*\"} ../klipper pi@voron24.local:/home/pi/klipper-ads1220",
+            "command": "rsync -iahpr --exclude={\".*\",\"*.pyc\",\"board/*\",\"out/*\"} ../kalico pi@voron24.local:/home/pi/klipper-ads1220",
             "problemMatcher": []
         },
         {
             "label": "📦 Deploy ADS1220 Klipper",
             "type": "shell",
-            "command": "rsync -iahpr --exclude={\".*\",\"*.pyc\",\"board/*\",\"out/*\"} ../klipper pi@voron24.local:/home/pi/klipper-ads1220",
+            "command": "rsync -iahpr --exclude={\".*\",\"*.pyc\",\"board/*\",\"out/*\"} ../kalico pi@voron24.local:/home/pi/klipper-ads1220",
             "problemMatcher": []
         },
         {
